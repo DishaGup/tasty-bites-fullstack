@@ -36,3 +36,165 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+/* CSS for the form container */
+.form-container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+/* CSS for form fields and error messages */
+.form-field {
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* CSS for highlighting invalid fields */
+input:invalid,
+select:invalid {
+  border-color: red;
+}
+
+/* CSS for custom error styles */
+input:invalid + .error-message,
+select:invalid + .error-message {
+  display: block;
+}
+nav {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+li {
+  margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  color: #666;
+}
+/* AddDishForm */
+.add-dish-form {
+  margin-bottom: 20px;
+}
+
+.add-dish-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.add-dish-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-dish-input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.add-dish-checkbox {
+  margin-right: 5px;
+}
+
+.add-dish-button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.add-dish-button:hover {
+  background-color: #218838;
+}
+
+/* Dishes */
+.dishes-container {
+  margin-bottom: 20px;
+}
+
+.dishes-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.dishes-list {
+  list-style: none;
+  padding: 0;
+}
+
+.dish-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.dish-name {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.dish-price {
+  margin-bottom: 5px;
+}
+
+.dish-availability {
+  color: #666;
+}
+
+/* chatbot.css */
+
+.chatbot-container {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.chatbot-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.chat-messages {
+  margin-bottom: 20px;
+}
+
+.chat-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.chat-send-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-send-button:hover {
+  background-color: #45a049;
+}
