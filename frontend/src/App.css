@@ -128,10 +128,10 @@ a:hover {
 }
 
 /* Dishes */
-/* Dishes.css */
+
 
 .dishes-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -166,12 +166,17 @@ a:hover {
 .dishes-list {
   list-style: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
 }
 
 .dish-item {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+  border: .5mm solid black;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .dish-image-container {

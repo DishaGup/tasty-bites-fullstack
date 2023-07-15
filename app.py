@@ -11,7 +11,7 @@ from bson import ObjectId
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app,origins="*")
+CORS(app, origins="*")
 
 socketio = SocketIO(app, cors_allowed_origins='*')
 
@@ -25,15 +25,23 @@ openai.api_key = os.getenv("OPENAPI_KEY")
 client = MongoClient(MONGO_URL)
 db = client[database_name]
 
+
 @app.route('/')
 def home():
     return 'Hello, Flask!'
+
+
 conversation_history = []
-conversation_history.append("Hi there! I'm Tasty Bites' chatbot. I'm here to assist you with any questions you have.")
-conversation_history.append("If you have any queries, feel free to ask. I'll do my best to provide helpful and entertaining responses.")
-conversation_history.append("If you're wondering about Tasty Bites' location, we are situated at 9/97 Opera House, Delhi.")
-conversation_history.append("At Tasty Bites, we offer a wide range of delicious dishes, including vegetarian and Chinese cuisine.")
-conversation_history.append("Our opening hours are from 9:00 AM to 10:00 PM. We're here to serve you throughout the day.")
+conversation_history.append(
+    "Hi there! I'm Tasty Bites' chatbot. I'm here to assist you with any questions you have.")
+conversation_history.append(
+    "If you have any queries, feel free to ask. I'll do my best to provide helpful and entertaining responses.")
+conversation_history.append(
+    "If you're wondering about Tasty Bites' location, we are situated at 9/97 Opera House, Delhi.")
+conversation_history.append(
+    "At Tasty Bites, we offer a wide range of delicious dishes, including vegetarian and Chinese cuisine.")
+conversation_history.append(
+    "Our opening hours are from 9:00 AM to 10:00 PM. We're here to serve you throughout the day.")
 
 
 @app.route('/chatbot', methods=['POST'])
@@ -56,9 +64,11 @@ def chatbot_interaction():
 
     return jsonify({'message': chatbot_response})
 
+
 @app.route('/menu', methods=['GET'])
 def get_menu():
-    menu = list(db.menu.find({}, {'_id': True, 'dish_name': True, 'price': True, 'availability': True}))
+    menu = list(db.menu.find({}, {'_id': True, 'dish_name': True,
+                'price': True, 'availability': True}))
     menu_with_id = []
     for item in menu:
         item['_id'] = str(item['_id'])
@@ -69,8 +79,6 @@ def get_menu():
             'availability': item['availability']
         })
     return jsonify(menu_with_id)
-
-
 
 
 @app.route('/menu', methods=['POST'])
@@ -92,6 +100,7 @@ def delete_dish(dish_id):
     db.menu.delete_one({'_id': dish_id})
     return jsonify(message='Dish deleted successfully')
 
+
 @app.route('/orders', methods=['POST'])
 def take_order():
     order_data = request.get_json()
@@ -99,12 +108,16 @@ def take_order():
     db.orders.insert_one(order_data)
     return jsonify(message='Order taken successfully')
 
+
 @socketio.on('update_status')
 def update_order_status(data):
     order_id = data['order_id']
     new_status = data['new_status']
-    db.orders.update_one({'_id': ObjectId(order_id)}, {'$set': {'status': new_status}})
-    emit('order_status_updated', {'order_id': order_id, 'new_status': new_status}, broadcast=True)
+    db.orders.update_one({'_id': ObjectId(order_id)}, {
+                         '$set': {'status': new_status}})
+    emit('order_status_updated', {
+         'order_id': order_id, 'new_status': new_status}, broadcast=True)
+
 
 @app.route('/orders/<order_id>', methods=['PUT'])
 def update_order(order_id):
@@ -112,9 +125,11 @@ def update_order(order_id):
     db.orders.update_one({'_id': ObjectId(order_id)}, {'$set': order_data})
     return jsonify(message='Order status updated successfully')
 
+
 @app.route('/orders', methods=['GET'])
 def get_orders():
-    orders = list(db.orders.find({}, {'_id': True, 'customerName': True, 'status': True, "Dishes":True}))
+    orders = list(db.orders.find(
+        {}, {'_id': True, 'customerName': True, 'status': True, "Dishes": True}))
     orders_with_id = []
     for item in orders:
         item['_id'] = str(item['_id'])
@@ -122,15 +137,18 @@ def get_orders():
             '_id': item['_id'],
             'customerName': item['customerName'],
             'status': item['status'],
-            "Dishes":item["Dishes"]
+            "Dishes": item["Dishes"]
         })
     return jsonify(orders_with_id)
+
+
 @app.route('/dishes', methods=['POST'])
 def get_dishes():
     dish_ids = request.json['dishIds']
     dish_object_ids = [ObjectId(dish_id) for dish_id in dish_ids]
 
-    dishes = list(db.menu.find({'_id': {'$in': dish_object_ids}}, {'_id': True, 'dish_name': True ,'price': True}))
+    dishes = list(db.menu.find({'_id': {'$in': dish_object_ids}}, {
+                  '_id': True, 'dish_name': True, 'price': True}))
     dishes_with_id = []
     total_price = 0  # Initialize the total price
 
@@ -160,5 +178,5 @@ def submit_feedback():
 
 
 if __name__ == "__main__":
-    unittest.main()
-    socketio.run(app, debug=True,use_reloader=True)
+   
+    socketio.run(app, debug=True, use_reloader=True)
