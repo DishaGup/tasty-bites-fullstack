@@ -20,7 +20,9 @@ const FeedbackForm = ({ onSubmitFeedback }) => {
       comment,
     };
 
-    onSubmitFeedback(feedback);
+   alert("Thankyou for your feedback, Eat more")
+
+
 
     // Reset form inputs
     setRating(5);

@@ -1,14 +1,14 @@
-// OrderForm.js
 import React, { useState, useEffect } from 'react';
+import { backend_url } from './AddDishForm';
 
 const OrderForm = () => {
   const [customerName, setCustomerName] = useState('');
-  const [selectedDish, setSelectedDish] = useState('');
+  const [selectedDishes, setSelectedDishes] = useState([]);
   const [dishOptions, setDishOptions] = useState([]);
 
   useEffect(() => {
     // Fetch dish options from the backend and update the 'dishOptions' state
-    fetch('/menu')
+    fetch(`${backend_url}/menu`)
       .then((response) => response.json())
       .then((data) => setDishOptions(data));
   }, []);
@@ -18,23 +18,29 @@ const OrderForm = () => {
   };
 
   const handleDishSelection = (e) => {
-    setSelectedDish(e.target.value);
+    const dishId = e.target.value;
+    if (selectedDishes.includes(dishId)) {
+      setSelectedDishes(selectedDishes.filter((id) => id !== dishId));
+    } else {
+      setSelectedDishes([...selectedDishes, dishId]);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (customerName.trim() === '' || selectedDish === '') {
+    if (customerName.trim() === '' || selectedDishes.length === 0) {
       // Display error message for invalid form inputs
       return;
     }
 
     const order = {
       customerName,
-      dishId: selectedDish,
+      Dishes: selectedDishes,
+    
     };
 
     // Submit the order
-    fetch('/orders', {
+    fetch(`${backend_url}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,8 +48,8 @@ const OrderForm = () => {
       body: JSON.stringify(order),
     })
       .then((response) => response.json())
-      .then((data) => {
-        // Handle the response, e.g., display success message or handle errors
+      .then((data) => {                                                
+        console.log(data);
       });
   };
 
@@ -60,20 +66,20 @@ const OrderForm = () => {
         maxLength={50}
       />
 
-      <label htmlFor="dishes">Select a Dish:</label>
-      <select
-        id="dishes"
-        value={selectedDish}
-        onChange={handleDishSelection}
-        required
-      >
-        <option value="">-- Select a dish --</option>
-        {dishOptions.map((dish) => (
-          <option key={dish._id} value={dish._id}>
-            {dish.dish_name}
-          </option>
-        ))}
-      </select>
+      <label>Select Dish(es):</label>
+      {dishOptions.map((dish) => (
+        <div key={dish._id}>
+          <input
+            type="checkbox"
+            id={dish._id}
+            value={dish._id}
+           
+            checked={selectedDishes.includes(dish._id)}
+            onChange={handleDishSelection}
+          />
+          <label htmlFor={dish._id}>{dish.dish_name}</label>
+        </div>
+      ))}
 
       <button type="submit">Submit Order</button>
     </form>
