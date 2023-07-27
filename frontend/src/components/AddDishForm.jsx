@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
 export const backend_url="http://localhost:5000"
 const AddDishForm = () => {
   const [dishName, setDishName] = useState('');
   const [price, setPrice] = useState('');
   const [availability, setAvailability] = useState(true);
-
+  const {gettokenofheader} = useContext(AuthContext); // Consume the AuthContext
+const [image,setimage] =useState('')
   const handleDishNameChange = (e) => {
     setDishName(e.target.value);
   };
@@ -16,46 +18,57 @@ const AddDishForm = () => {
   const handleAvailabilityChange = (e) => {
     setAvailability(e.target.checked);
   };
-
   const handleAddDish = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const dishData = {
       dish_name: dishName,
       price: parseFloat(price),
       availability: availability,
+      image
     };
-
+  
     try {
       const response = await fetch(`${backend_url}/menu`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer Admin-power',
         },
         body: JSON.stringify(dishData),
+        credentials: 'include'
       });
-       
+  
       if (response.ok) {
-     
         alert('Dish added successfully');
       } else {
-        // Handle the case when the dish couldn't be added
-        // Display an error message or perform appropriate error handling
         alert('Failed to add dish');
         console.error('Failed to add dish');
       }
     } catch (error) {
-      // Handle any network or server error
       console.error(error);
     }
-      // Reset form inputs
-      setDishName('');
-      setPrice('');
-      setAvailability(true);
+  
+    // Reset form inputs
+    setDishName('');
+    setPrice('');
+    setAvailability(true);
+    setimage('')
   };
+
+  
+  
   return (
-    <div className="add-dish-form">
-      <h2 className="add-dish-heading">Add Dish</h2>
-      <form onSubmit={handleAddDish}>
+    <section class="section section-divider white blog" id="blog">
+    <div class="container">
+    
+        
+        
+       
+          <h2 class="h2 section-title"> Add Dish<span class="span">Form</span>   </h2>
+   
+     
+      <form className="login-form" onSubmit={handleAddDish}>
+      <div className="input-wrapper">
         <label htmlFor="dishName" className="add-dish-label">Dish Name:</label>
         <input
           type="text"
@@ -63,9 +76,9 @@ const AddDishForm = () => {
           value={dishName}
           onChange={handleDishNameChange}
           required
-          className="add-dish-input"
-        />
-
+          className="input-field"
+        /></div>
+  <div className="input-wrapper">
         <label htmlFor="price" className="add-dish-label">Price:</label>
         <input
           type="number"
@@ -73,23 +86,37 @@ const AddDishForm = () => {
           value={price}
           onChange={handlePriceChange}
           required
-          className="add-dish-input"
-        />
-
+          className="input-field"
+        /></div>
+  <div className="input-wrapper">
         <label htmlFor="availability" className="add-dish-label">
           <input
             type="checkbox"
             id="availability"
             checked={availability}
             onChange={handleAvailabilityChange}
-            className="add-dish-checkbox"
+            className="input-field"
+          />
+          Available
+        </label></div>
+        <div className="input-wrapper">
+        <label htmlFor="image" className="add-dish-label">
+          <input
+            type="url"
+            id="image"
+            name="image"
+          
+            onChange={(e)=>setimage(e.target.value)}
+            className="input-field"
           />
           Available
         </label>
 
+
+        </div>
         <button type="submit" className="add-dish-button">Add Dish</button>
       </form>
-    </div>
+    </div>  </section>
   );
 };
 

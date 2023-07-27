@@ -30,9 +30,13 @@ const FeedbackForm = ({ onSubmitFeedback }) => {
   };
 
   return (
-    <div>
-      <h2>Feedback</h2>
-      <form onSubmit={handleSubmit}>
+    <section class="section section-divider white blog" id="blog">
+    <div class="container">
+     
+          <h2  className="h2 section-title">Feedback <span className="span">Form</span>  </h2>
+  
+      <form  className="login-form" onSubmit={handleSubmit}>
+      <div className="input-wrapper">
         <label htmlFor="rating">Rating:</label>
         <input
           type="number"
@@ -42,19 +46,24 @@ const FeedbackForm = ({ onSubmitFeedback }) => {
           value={rating}
           onChange={handleRatingChange}
           required
+          placeholder='rating'
+          className="input-field"
         />
-
+</div>
+<div className="input-wrapper">
         <label htmlFor="comment">Comment:</label>
         <textarea
           id="comment"
           value={comment}
           onChange={handleCommentChange}
           required
+          placeholder='comment'
+          className="input-field"
         ></textarea>
-
-        <button type="submit">Submit Feedback</button>
+</div>
+        <button type="submit" className='btn' style={{margin:'auto',textAlign:'center'}}>Submit Feedback</button>
       </form>
-    </div>
+    </div> </section>
   );
 };
 

@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-
+export const ImageContainer = {
+  pizza: "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
+  dosa: "https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  Dosa: "https://media.istockphoto.com/id/1156896083/photo/cheese-masala-dosa-recipe-with-sambar-and-chutney-selective-focus.jpg?s=1024x1024&w=is&k=20&c=AGQD2LRbSKtuziKNjI3tUIUAlP9IxyOMskTOSnHayo8=",
+  samosa: "https://images.pexels.com/photos/14477873/pexels-photo-14477873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  Samosa: "https://images.pexels.com/photos/9027521/pexels-photo-9027521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  tea: "https://images.pexels.com/photos/2659387/pexels-photo-2659387.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  chicken: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+};
 const Dishes = () => {
   const [dishes, setDishes] = useState([]);
   const [filteredDishes, setFilteredDishes] = useState([]);
   const searchInputRef = useRef(null);
 
-  const ImageContainer = {
-    pizza: "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
-    dosa: "https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    Dosa: "https://media.istockphoto.com/id/1156896083/photo/cheese-masala-dosa-recipe-with-sambar-and-chutney-selective-focus.jpg?s=1024x1024&w=is&k=20&c=AGQD2LRbSKtuziKNjI3tUIUAlP9IxyOMskTOSnHayo8=",
-    samosa: "https://images.pexels.com/photos/14477873/pexels-photo-14477873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    Samosa: "https://images.pexels.com/photos/9027521/pexels-photo-9027521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    tea: "https://images.pexels.com/photos/2659387/pexels-photo-2659387.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    chicken: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  };
 
   useEffect(() => {
     // Fetch dishes from the backend
@@ -37,6 +36,7 @@ const Dishes = () => {
       setFilteredDishes(filtered);
     }
   };
+  
   function getImageByKeyword(keyword) {
     const lowercaseKeyword = keyword.toLowerCase();
   
@@ -51,8 +51,7 @@ const Dishes = () => {
   
   return (
     <>
-      <h1>Welcome to Tasty Bites!</h1>
-      <div className="dishes-container">
+        <div className="dishes-container">
         <h2 className="dishes-heading">Menu</h2>
         <div className="search-container">
           <input
