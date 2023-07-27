@@ -44,7 +44,7 @@ const fetchDishes=()=>{
   };
   
 const handleDeleteDish =(dishId) =>{
-console.log(dishId)
+//console.log(dishId)
   fetch(`http://localhost:5000/menu/${dishId}`,{
     method:"DELETE",
        headers: {
@@ -54,7 +54,7 @@ console.log(dishId)
        
         credentials: 'include'
   })
-  .then((response) => console.log(response)).then(()=>fetchDishes())
+  .then((response) => (response)).then(()=>fetchDishes())
   .catch((err)=>console.log(err))
 
 

@@ -42,7 +42,7 @@ const OrderList = () => {
     // Fetch orders from the backend and update the 'orders' state
     fetch(`${backend_url}/orders`)
       .then((response) => {
-        console.log(response)
+       // console.log(response)
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -85,7 +85,7 @@ const OrderList = () => {
     })
    
       .then((response) => {
-        console.log(response)
+        //console.log(response)
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
