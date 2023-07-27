@@ -73,6 +73,7 @@ const [image,setimage] =useState('')
         <input
           type="text"
           id="dishName"
+          placeholder='name'
           value={dishName}
           onChange={handleDishNameChange}
           required
@@ -86,10 +87,12 @@ const [image,setimage] =useState('')
           value={price}
           onChange={handlePriceChange}
           required
+          placeholder='price'
           className="input-field"
         /></div>
   <div className="input-wrapper">
-        <label htmlFor="availability" className="add-dish-label">
+        <label htmlFor="availability" className="add-dish-label">  Available
+        </label>
           <input
             type="checkbox"
             id="availability"
@@ -97,24 +100,23 @@ const [image,setimage] =useState('')
             onChange={handleAvailabilityChange}
             className="input-field"
           />
-          Available
-        </label></div>
+        </div>
         <div className="input-wrapper">
-        <label htmlFor="image" className="add-dish-label">
+        <label htmlFor="image" className="add-dish-label">   Image
+        </label>
           <input
             type="url"
             id="image"
             name="image"
-          
+           placeholder='image'
             onChange={(e)=>setimage(e.target.value)}
             className="input-field"
           />
-          Available
-        </label>
+        
 
 
         </div>
-        <button type="submit" className="add-dish-button">Add Dish</button>
+        <button type="submit" className="btn btn-hover">Add Dish</button>
       </form>
     </div>  </section>
   );

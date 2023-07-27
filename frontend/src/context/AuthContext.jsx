@@ -23,6 +23,7 @@ const AuthContextProvider = ({ children }) => {
     // Clear the stored admin login status from browser storage
    // logoutUser()
     localStorage.removeItem('adminLoggedIn');
+    localStorage.removeItem("token")
   };
 
 const gettokenofheader="Admin-power"

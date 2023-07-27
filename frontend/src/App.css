@@ -429,8 +429,9 @@ body.active { overflow: hidden; }
 }
 
 .navbar.active {
-  height: 236px;
+  height: 256px;
   visibility: visible;
+  overflow: scroll;
 }
 
 .navbar-list { margin-block: 10px; }
@@ -1790,49 +1791,10 @@ button,.social-link,.myButton{
 
 
 
-/* AddDishForm */
-
-/*
-.add-dish-form {
-  margin-bottom: 20px;
-}
-
-.add-dish-heading {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.add-dish-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.add-dish-input {
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
-.add-dish-checkbox {
-  margin-right: 5px;
-}
-
-.add-dish-button {
-  padding: 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.add-dish-button:hover {
-  background-color: #218838;
-}
-*/
 
 /* Dishes */
 
-/*
+
 .dishes-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -1916,7 +1878,7 @@ button,.social-link,.myButton{
   font-size: 14px;
   color: #888;
 }
-*/
+
 /* Additional styling or animations can be added as per your requirements */
 
 
@@ -2060,23 +2022,6 @@ input[type="password"] {
   opacity: 1;
 }
 
-.order-list-container {
-  margin-top: 20px;
-}
-
-.order-item {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.customer-name {
-  font-weight: bold;
-}
-
-.status {
-  color: #888;
-}
 
 .button-group {
   margin-top: 10px;
@@ -2188,3 +2133,113 @@ input[type="password"] {
   display: flex;
   flex-direction: column;
 } */
+/* In a separate CSS file or inside a <style> tag */
+
+.order-list-container {
+  margin-top: var(--section-padding);
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-list-container th,
+.order-list-container td {
+  padding: 12px;
+  text-align: left;
+}
+
+.order-list-container th {
+  background-color: var(--cultured);
+  border-bottom: 2px solid var(--desert-sand);
+}
+
+.order-item {
+  border-bottom: 1px solid var(--gray-x-11-gray);
+}
+
+.order-item td {
+  padding: 12px;
+}
+
+.order-item input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+
+.status-button,
+.action-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--fs-4);
+  transition: background-color var(--transition-1);
+  color: var(--white);
+}
+
+.status-button {
+  background-color: var(--deep-saffron);
+}
+
+.action-button {
+  background-color: var(--tangerine);
+}
+
+.status-button:hover,
+.action-button:hover {
+  background-color: var(--cinnabar);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the modal */
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+  z-index: 999;
+  border: 3px solid black;
+}
+
+.modal-content {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal h3 {
+  font-size: var(--fs-2);
+  margin-bottom: 15px;
+}
+
+.modal p {
+  margin-bottom: 10px;
+}
+
+.modal button {
+  background-color: var(--deep-saffron);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: var(--fs-3);
+  transition: background-color var(--transition-1);
+}
+
+.modal button:hover {
+  background-color: var(--tangerine);
+}
+
+/* Additional custom styles based on CSS variables... */

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { backend_url } from './AddDishForm';
 import { ImageContainer } from './Dishes';
 import { Star } from 'react-ionicons';
+import { Navigate } from 'react-router-dom';
 
 const OrderForm = () => {
   const [customerName, setCustomerName] = useState('');
@@ -51,7 +52,7 @@ const OrderForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {                                                
-        console.log(data);
+        <Navigate to='/orders' />
       });
   };
 

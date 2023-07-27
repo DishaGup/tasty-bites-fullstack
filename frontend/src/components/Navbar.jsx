@@ -10,10 +10,12 @@ const HomePage = () => {
   const navbar = useRef(null);
   const header=useRef(null)
   const backTopBtn=useRef(null)
+  const togglebutton=useRef(null)
   // Get the current location using the useLocation hook from react-router-dom
   const location = useLocation();
   function toggleNavbar() {
     navbar.current.classList.toggle("active");
+    togglebutton.current.classList.toggle("active");
   }
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +47,7 @@ const HomePage = () => {
           </h1>
           <nav className="navbar" ref={navbar}>
             <ul className="navbar-list">
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleNavbar}>
                 <Link
                   className="navbar-link"
                   to="/"
@@ -57,25 +59,25 @@ const HomePage = () => {
                 </Link>
               </li>
               {!isAuth && (
-                <li className="nav-item">
+                <li className="nav-item" onClick={toggleNavbar} >
                   <Link className="navbar-link" to="/login">
                     Login
                   </Link>
                 </li>
               )}
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleNavbar}>
                 <Link className="navbar-link" to="/chatbot">
                   Chatbot
                 </Link>
               </li>
               {isAuth && (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item" onClick={toggleNavbar}>
                     <Link className="navbar-link" to="/add-dish">
                       Add Dish
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item" onClick={toggleNavbar} >
                     <Link
                       className="navbar-link"
                       to="/login"
@@ -86,23 +88,34 @@ const HomePage = () => {
                   </li>
                 </>
               )}
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleNavbar}>
                 <Link className="navbar-link" to="/feedback">
                   Feedback
                 </Link>
               </li>
-              <button className="btn btn-hover"> <li className="nav-item">
-                <Link className="navbar-link" to="/order">
-                  Place Order
-                </Link>
-              </li></button>   
               {isAuth && (
-                <li className="nav-item">
+                <li className="nav-item" onClick={toggleNavbar}>
+                  <Link className="navbar-link" to="/menu">
+                   Menu
+                  </Link>
+                </li>
+              )}
+               {isAuth && (
+                <li className="nav-item" onClick={toggleNavbar}>
                   <Link className="navbar-link" to="/orders">
                     Order List
                   </Link>
                 </li>
               )}
+              <button className="btn btn-hover"> <li className="nav-item" onClick={toggleNavbar}>
+                <Link className="navbar-link" to="/order">
+
+                  Place Order
+                  
+                </Link>
+              </li></button>   
+           
+           
             </ul>
           </nav>
           <div class="header-btn-group">
@@ -111,6 +124,7 @@ const HomePage = () => {
               className="nav-toggle-btn"
               aria-label="Toggle Menu"
               onClick={toggleNavbar}
+              ref={togglebutton}
             >
               <span className="line top"></span>
               <span className="line middle"></span>

@@ -39,7 +39,7 @@ const Promo = () => {
       <div className="card-icon">
       <svg width={60} height={60} fill="none" xmlns="http://www.w3.org/2000/svg">
 
-          <g clip-path="url(#A)" style={iconStyle}>
+          <g clipPath="url(#A)" style={iconStyle}>
             <path d={path} />
               </g>
           <defs>

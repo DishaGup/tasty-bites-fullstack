@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { TrashOutline } from "react-ionicons";
 import { Link } from "react-router-dom";
 export const ImageContainer = {
   pizza: "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
@@ -15,14 +16,19 @@ const Dishes = () => {
   const searchInputRef = useRef(null);
 
 
+const fetchDishes=()=>{
+  fetch("http://localhost:5000/menu")
+  .then((response) => response.json())
+  .then((data) => {
+    setDishes(data);
+    setFilteredDishes(data);
+  });
+}
+
+
   useEffect(() => {
     // Fetch dishes from the backend
-    fetch("http://localhost:5000/menu")
-      .then((response) => response.json())
-      .then((data) => {
-        setDishes(data);
-        setFilteredDishes(data);
-      });
+   fetchDishes()
   }, []);
 
   const handleSearch = () => {
@@ -37,6 +43,24 @@ const Dishes = () => {
     }
   };
   
+const handleDeleteDish =(dishId) =>{
+console.log(dishId)
+  fetch(`http://localhost:5000/menu/${dishId}`,{
+    method:"DELETE",
+       headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer Admin-power',
+        },
+       
+        credentials: 'include'
+  })
+  .then((response) => console.log(response)).then(()=>fetchDishes())
+  .catch((err)=>console.log(err))
+
+
+}
+
+
   function getImageByKeyword(keyword) {
     const lowercaseKeyword = keyword.toLowerCase();
   
@@ -75,6 +99,7 @@ const Dishes = () => {
                   Availability: {dish.availability ? "Available" : "Not Available"}
                 </p>
               </div>
+              <TrashOutline  onClick={()=>handleDeleteDish(dish._id)} />
             </li>
           ))}
         </ul>

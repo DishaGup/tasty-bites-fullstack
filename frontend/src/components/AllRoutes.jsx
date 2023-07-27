@@ -13,7 +13,7 @@ const AllRoutes = () => {
     <div>
       <Routes>
          <Route path="/" element={<HomePage />} /> 
-      
+        <Route path="/menu" element={<Dishes />} />
 
 
         <Route path="/add-dish" element={<AddDishForm />} />
