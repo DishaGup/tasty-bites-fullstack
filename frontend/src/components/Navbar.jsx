@@ -8,9 +8,9 @@ import HeroBanner from "./homepage/HeroBanner";
 const HomePage = () => {
   const { isAuth, loginUser, logoutUser } = useContext(AuthContext); // Consume the AuthContext
   const navbar = useRef(null);
-  const header=useRef(null)
-  const backTopBtn=useRef(null)
-  const togglebutton=useRef(null)
+  const header = useRef(null);
+  const backTopBtn = useRef(null);
+  const togglebutton = useRef(null);
   // Get the current location using the useLocation hook from react-router-dom
   const location = useLocation();
   function toggleNavbar() {
@@ -34,11 +34,10 @@ const HomePage = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
-  
+
   return (
     <>
-      <header className="header" ref={header} >
+      <header className="header" ref={header}>
         <div className="container">
           <h1>
             <Link to="/" className="logo">
@@ -59,7 +58,7 @@ const HomePage = () => {
                 </Link>
               </li>
               {!isAuth && (
-                <li className="nav-item" onClick={toggleNavbar} >
+                <li className="nav-item" onClick={toggleNavbar}>
                   <Link className="navbar-link" to="/login">
                     Login
                   </Link>
@@ -77,7 +76,7 @@ const HomePage = () => {
                       Add Dish
                     </Link>
                   </li>
-                  <li className="nav-item" onClick={toggleNavbar} >
+                  <li className="nav-item" onClick={toggleNavbar}>
                     <Link
                       className="navbar-link"
                       to="/login"
@@ -96,26 +95,25 @@ const HomePage = () => {
               {isAuth && (
                 <li className="nav-item" onClick={toggleNavbar}>
                   <Link className="navbar-link" to="/menu">
-                   Menu
+                    Menu
                   </Link>
                 </li>
               )}
-               {isAuth && (
+              {isAuth && (
                 <li className="nav-item" onClick={toggleNavbar}>
                   <Link className="navbar-link" to="/orders">
                     Order List
                   </Link>
                 </li>
               )}
-              <button className="btn btn-hover"> <li className="nav-item" onClick={toggleNavbar}>
-                <Link className="navbar-link" to="/order">
-
-                  Place Order
-                  
-                </Link>
-              </li></button>   
-           
-           
+              <button className="btn btn-hover">
+                {" "}
+                <li className="nav-item" onClick={toggleNavbar}>
+                  <Link className="navbar-link" to="/order">
+                    Place Order
+                  </Link>
+                </li>
+              </button>
             </ul>
           </nav>
           <div class="header-btn-group">
@@ -132,13 +130,22 @@ const HomePage = () => {
             </button>{" "}
           </div>
         </div>
-
       </header>
-      <a href="#" className="back-top-btn" aria-label="Back to top" ref={backTopBtn}>
-   
-    <ChevronUp  color="#fff" />
-  </a>
-<HeroBanner/>
+      <a
+        href="#"
+        className="back-top-btn"
+        aria-label="Back to top"
+        ref={backTopBtn}
+      >
+        <ChevronUp color="#fff" />
+      </a>
+      <HeroBanner />
+
+      <div className="footer-bottom">
+        <div className="container">
+          <p className="copyright-text">Enjoy tasty foods</p>
+        </div>
+      </div>
     </>
   );
 };

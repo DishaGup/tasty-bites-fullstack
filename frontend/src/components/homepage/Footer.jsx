@@ -94,13 +94,6 @@ const Footer = () => {
       </div>
     </div>
 
-    <div className="footer-bottom">
-      <div className="container">
-        <p className="copyright-text">
-         Enjoy tasty foods
-        </p>
-      </div>
-    </div>
 
   </footer>
 
