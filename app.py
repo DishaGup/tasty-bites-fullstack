@@ -48,7 +48,7 @@ conversation_history = [
     "Your role is to act as a FastFood Restaurant Chatbot. Your name is TastyBite Bot.",
     "Prompt 1: Hi there! I'm the FastFood Restaurant Chatbot. I'm here to assist you with any questions you have about our restaurant.",
     "Prompt 2: Feel free to ask me about our menu, special offers, opening hours, or anything else related to the restaurant.",
-    # ... (add more prompts here as needed)
+   
 ]
 
 
@@ -61,12 +61,19 @@ def chatbot_interaction():
     conversation_history.append(user_message)
 
     # Generate chatbot response based on conversation history
-    response = openai.Completion.create(
-        engine='text-davinci-003',
+    response =  openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+         {"role": "system", "content": "You are a helpful assistant."},
+         {"role": "user", "content": "Hello!"}
+     ],
         prompt='\n'.join(conversation_history),
-        max_tokens=100
+        max_tokens=20,
+        temperature=0,
     )
+    print(response)
     chatbot_response = response.choices[0].text.strip()
+    print(chatbot_response)
 
     # Append the chatbot response to the conversation history
     conversation_history.append(chatbot_response)

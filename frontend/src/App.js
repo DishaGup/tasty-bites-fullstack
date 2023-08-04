@@ -9,6 +9,11 @@ function App() {
     
      <HomePage/>
      <AllRoutes/>
+     <div className="footer-bottom">
+        <div className="container">
+          <p className="copyright-text">Enjoy tasty foods</p>
+        </div>
+      </div>
     </div>
   );
 }
