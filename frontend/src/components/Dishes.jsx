@@ -90,7 +90,7 @@ const handleDeleteDish =(dishId) =>{
           {filteredDishes.map((dish, index) => (
             <li key={index} className="dish-item">
               <div className="dish-image-container">
-                <img src={ImageContainer[dish.dish_name] || getImageByKeyword(dish.dish_name) } alt={dish.dish_name} />
+                <img src={  dish.image || ImageContainer[dish.dish_name] || getImageByKeyword(dish.dish_name) } alt={dish.dish_name} />
               </div>
               <div className="dish-details">
                 <h3 className="dish-name"   >{dish.dish_name}</h3>
