@@ -90,3 +90,12 @@ In just three weeks, I embarked on a challenging journey to master three entirel
 
 <br/>
 The journey of mastering new technologies in such a short span has been both challenging and rewarding. I embraced prompt engineering and generative AI to overcome obstacles and create a robust web application for TastyBites. The project showcases the power of AI-driven development and rapid learning, proving that with the right tools and dedication, incredible feats can be achieved in a short time.
+
+## Snapshots 
+
+![homepage](https://github.com/DishaGup/tasty-bites-fullstack/assets/115460391/5bead290-f9a1-4a40-8763-6b7d9ade8a47)
+
+---
+
+![chat-section](https://github.com/DishaGup/tasty-bites-fullstack/assets/115460391/fe0f5b2f-da1d-49b7-b4f8-ccb0e157336c)
+
