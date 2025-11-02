@@ -17,7 +17,7 @@ const Dishes = () => {
 
 
 const fetchDishes=()=>{
-  fetch("http://localhost:5000/menu")
+  fetch("https://tasty-bites-app.onrender.com/menu")
   .then((response) => response.json())
   .then((data) => {
     setDishes(data);
